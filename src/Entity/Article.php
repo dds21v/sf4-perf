@@ -46,6 +46,11 @@ class Article
      */
     private $imageAlt;
 
+    /**
+     * @ORM\Column(type="string", length=32)
+     */
+    private $slug;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -119,6 +124,18 @@ class Article
     public function setImageAlt(?string $imageAlt): self
     {
         $this->imageAlt = $imageAlt;
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
 
         return $this;
     }
