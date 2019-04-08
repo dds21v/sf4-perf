@@ -13,3 +13,7 @@ app_show:
 app_listarticle:
     path: /listarticle
     controller: App\Controller\ArticleListController::listarticle
+
+app_article:
+    path: /article
+    controller: App\Controller\ArticleController::new
