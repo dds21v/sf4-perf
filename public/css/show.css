@@ -6,3 +6,33 @@ h1{
     color: white;
     background-color: #0062cc;
 }
+
+.content{
+    width: 80%;
+    height: auto;
+    border: 2px solid steelblue;
+    border-radius: 5px;
+    text-align: justify;
+    position: relative;
+    left: 10%;
+    padding: 20px;
+}
+
+.nbv{
+    width: 5%;
+    height: auto;
+    border: 2px solid black;
+    border-radius: 5px;
+    text-align: center;
+    position: relative;
+    left: 10%;
+    padding: 5px;
+}
+
+.btn{
+    width: 40%;
+    height: auto;
+    margin: auto;
+    position: relative;
+    left: 10%;
+}
