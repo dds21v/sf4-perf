@@ -1,5 +1,10 @@
 {% extends 'base.html.twig' %}
 
+{% block css %}
+    {{ parent() }}
+    <link rel="stylesheet" href="/css/show.css">
+{% endblock %}
+
 {% block body %}
     <h1>{{ article.title }}</h1>
     <p>{{ article.content }}</p>

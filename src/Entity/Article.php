@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ArticleRepository")
@@ -18,6 +20,12 @@ class Article
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(
+     *     min = 10,
+     *     max = 100,
+     *     minMessage = "Le titre doit comporter au moins {{ limit }} caractères",
+     *     maxMessage = "Le titre doit comporter moins de {{ limit }} caractères"
+     * )
      */
     private $title;
 
@@ -47,6 +55,7 @@ class Article
     private $imageAlt;
 
     /**
+     * @Gedmo\Slug(fields={"title"})
      * @ORM\Column(type="string", length=32)
      */
     private $slug;
@@ -55,6 +64,19 @@ class Article
      * @ORM\Column(type="boolean")
      */
     private $isPublished;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $nbViews;
+
+    public function __construct()
+    {
+        // On ajoute la date de création
+        $this->setCreatedAt(new \DateTime());
+        // On initialise le nombre de vues à 0
+        $this->setNbViews(0);
+    }
 
     public function getId(): ?int
     {
@@ -153,6 +175,18 @@ class Article
     public function setIsPublished(bool $isPublished): self
     {
         $this->isPublished = $isPublished;
+
+        return $this;
+    }
+
+    public function getNbViews(): ?int
+    {
+        return $this->nbViews;
+    }
+
+    public function setNbViews(int $nbViews): self
+    {
+        $this->nbViews = $nbViews;
 
         return $this;
     }

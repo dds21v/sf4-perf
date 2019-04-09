@@ -28,8 +28,8 @@ class ArticleType extends AbstractType
             ->add('isPublished', null, [
                 'label' => 'Publier l\'article?'
             ])
-            ->add('slug')
-            ->add('createdAt')
+            //->add('slug')
+
             /*->add('create', SubmitType::class, [
                 "label" => "Créer l’article",   "attr"  =>[
                     "class"=>"btn-success"

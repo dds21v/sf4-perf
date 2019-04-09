@@ -18,12 +18,12 @@ ul{
 li{
     list-style: none;
 }
-
+/*
 #btnNew{
     width: 10%;
     height: auto;
     position: relative;
-    left:40%
-    bottom: 10vh;
-
+    left:45%;
+    bottom: 25vh;
+    top: 50vh;
 }

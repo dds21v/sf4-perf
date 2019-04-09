@@ -29,7 +29,8 @@ class ArticleController extends AbstractController
             $entityManager->flush();
             $this->addFlash('success', 'Votre article a bien été ajouté !');
 
-            return $this->redirectToRoute('app_home');
+            /*return $this->redirectToRoute('app_home');*/
+            return $this->redirectToRoute('app_show', ['slug' => $article->getSlug()]);
         }
 
 
@@ -40,5 +41,13 @@ class ArticleController extends AbstractController
                 'createForm'=> $form->createView()
             ]
         );
+    }
+
+    /**
+     * @return Response
+     */
+    public function edit(): Response
+    {
+        return $this->render('article/udpate.html.twig');
     }
 }
