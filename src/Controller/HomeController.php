@@ -37,7 +37,7 @@ class HomeController extends AbstractController
      * @param Request $request
      * @return Response
      */
-    public function show(Article $article, Request $request): Response
+    public function show(Article $article, Request $request)
     {
         // Récupération du Repository
       //  $repository = $this->getDoctrine()->getRepository(Article::class);
@@ -48,16 +48,15 @@ class HomeController extends AbstractController
         //]);
 
         //création du formulaire pour l'ajout de commentaire
-        $newComment = new Comment();
-        $newComment->setArticle($article);
-        $commentForm = $this->createForm(CommentFrontType::class);
+        $commentForm = $this->createFormComment($article);
 
         //Gestion de l'ajout du commentaire
         $commentForm->handleRequest($request);
         if ($commentForm->isSubmitted() && $commentForm->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($newComment);
+            $entityManager->persist($commentForm->getData());
             $entityManager->flush();
+            $commentForm = $this->createFormComment($article);
         }
 
         // Renvoi des articles à la vue
@@ -68,5 +67,17 @@ class HomeController extends AbstractController
                 'commentForm'=> $commentForm->createView()
             ]
         );
+    }
+    /**
+     * Créé un formulaire pour ajouter un nouveau comment à un article
+     * @param Article $article
+     * @return \Symfony\Component\Form\FormInterface
+     */
+    private function createFormComment(Article $article)
+    {
+        // Création d'un nouveau formulaire
+        $comment = new Comment();
+        $comment->setArticle($article);
+        return $this->createForm(CommentFrontType::class, $comment);
     }
 }
