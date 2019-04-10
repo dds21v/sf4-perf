@@ -51,7 +51,7 @@ class HomeController extends AbstractController
         $commentForm = $this->createFormComment($article);
 
         //Gestion de l'ajout du commentaire
-        $commentForm->handleRequest($request);
+        $commentForm->handleRequest($request); //Récupère le POST
         if ($commentForm->isSubmitted() && $commentForm->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($commentForm->getData());
@@ -64,7 +64,7 @@ class HomeController extends AbstractController
             'article/show.html.twig',
             [
                 'article'=>$article,
-                'commentForm'=> $commentForm->createView()
+                'commentForm'=> $commentForm->createView() //on ajoute la Méthode createView à la variable $commentForm
             ]
         );
     }
@@ -76,8 +76,8 @@ class HomeController extends AbstractController
     private function createFormComment(Article $article)
     {
         // Création d'un nouveau formulaire
-        $comment = new Comment();
-        $comment->setArticle($article);
+        $comment = new Comment(); //instanciation de la classe
+        $comment->setArticle($article); //
         return $this->createForm(CommentFrontType::class, $comment);
     }
 }

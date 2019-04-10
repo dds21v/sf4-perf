@@ -9,6 +9,7 @@ app_home:
 app_show:
     path: /article/{slug}
     controller: App\Controller\HomeController::show
+    methods: GET|POST
 
 app_listarticle:
     path: /listarticle
