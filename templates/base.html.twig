@@ -27,6 +27,14 @@
                 <a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
             </div>
         </div>
+
+            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                <a href="{{ path('fos_user_registration_register') }}" class="nav-link" style="color: white">Inscription</a>
+                <a href="{{ path('fos_user_security_login') }}" class="nav-link" style="color: white">Connexion</a>
+            {% else %}
+                <a href="{{ path('fos_user_security_login') }}" class="nav-link" style="color: white">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+            {% endif %}
+
     </nav>
 {% endblock %}
 

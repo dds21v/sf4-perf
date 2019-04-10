@@ -15,5 +15,9 @@ app_listarticle:
     path: /listarticle
     controller: App\Controller\ArticleListController::listarticle
 
+app_list:
+    path: /userlist
+    controller: App\Controller\UserController::list
+
 
 
