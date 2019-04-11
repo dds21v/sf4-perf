@@ -36,3 +36,12 @@ h1{
     position: relative;
     left: 10%;
 }
+
+#likes{
+    position: relative;
+    width: 5%;
+    height: auto;
+    left: 10%;
+    border: 2px solid black;
+    border-radius: 5px;
+}

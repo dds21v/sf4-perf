@@ -9,6 +9,7 @@
     {% block stylesheet %}
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     {% endblock %}
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 </head>
 <body>
 {% block navbar %}
@@ -20,19 +21,22 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 <a class="nav-item nav-link active" href="{{ path('app_home') }}">Home <span class="sr-only">(current)</span></a>
+                {% if is_granted("ROLE_ADMIN") %}
+                    <a class="nav-item nav-link active" href="{{ path('app_list') }}">Gestion des Utilisateurs</a>
+                {% endif %}
                 <a class="nav-item nav-link" href="{{ path('app_article') }}">Nouvel article</a>
                 <a class="nav-item nav-link" href="{#{ path('app_about') }#}">A propos</a>
                 <a class="nav-item nav-link" href="{#{ path('app_contact') }#}">Contact</a>
-                <a class="nav-item nav-link" href="#">More</a>
+
                 <a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
             </div>
         </div>
 
             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                <a href="{{ path('fos_user_security_logout') }}" class="nav-link" style="color: white">{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a>
+            {% else %}
                 <a href="{{ path('fos_user_registration_register') }}" class="nav-link" style="color: white">Inscription</a>
                 <a href="{{ path('fos_user_security_login') }}" class="nav-link" style="color: white">Connexion</a>
-            {% else %}
-                <a href="{{ path('fos_user_security_login') }}" class="nav-link" style="color: white">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
             {% endif %}
 
     </nav>
@@ -59,8 +63,11 @@
 
 
 {% block body %}{% endblock %}
-{% block javascripts %}{% endblock %}
+
+
+{% block javascripts %}
 <script src="/js/jquery-3.3.1.min.js"></script>
 <script src="/js/bootstrap.bundle.min.js"></script>
+{% endblock %}
 </body>
 </html>

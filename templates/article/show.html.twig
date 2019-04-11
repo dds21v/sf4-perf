@@ -9,11 +9,21 @@
     <h1>{{ article.title }}</h1>
     <p class="content">{{ article.content }}</p>
     <p class="nbv">{{ article.nbViews }} vues</p>
+    <div id="likes">
+        <span id="nb-likes"> {{ article.likes }}</span>
+        <button class="btn btn-link" data-slug="{{ article.slug }}">
+            <i class="far fa-thumbs-up" ></i>
+        </button>
+    </div>
     <div class="btn">
     <a href="{{ path('app_home')}}" class="btn btn-outline-secondary">Retour</a>
+        {% if is_granted('ROLE_MODERATEUR') %}
     <a href="{{ path('app_editarticle', {slug: article.slug}) }}" class="btn btn-outline-secondary">Modifier l'article</a>
     <a href="{{ path('app_delete', {slug: article.slug}) }}" class="btn btn-outline-secondary">Supprimer l'article</a>
+        {% endif %}
     </div>
+
+
 
     <h2>Ajouter un commentaire</h2>
 
@@ -41,4 +51,10 @@
     {% endfor %}
     </ul>
 
+{% endblock %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset("js/ajax-article-likes.js") }}"></script>
 {% endblock %}

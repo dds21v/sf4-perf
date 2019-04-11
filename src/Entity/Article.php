@@ -77,6 +77,11 @@ class Article
      */
     private $comments;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $likes;
+
     public function __construct()
     {
         // On ajoute la date de création
@@ -84,6 +89,8 @@ class Article
         // On initialise le nombre de vues à 0
         $this->setNbViews(0);
         $this->comments = new ArrayCollection();
+        // On initialise le nombre le likes à 0
+        $this->setLikes(0);
     }
 
     public function __toString()
@@ -231,6 +238,18 @@ class Article
                 $comment->setArticle(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getLikes(): ?int
+    {
+        return $this->likes;
+    }
+
+    public function setLikes(int $likes): self
+    {
+        $this->likes = $likes;
 
         return $this;
     }
