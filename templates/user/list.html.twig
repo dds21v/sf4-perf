@@ -7,7 +7,9 @@
     {% for user in users %}
         <li>
             {{ user.username }}
-            <a href="{{ path('app_user_editrole', {id: user.id}) }}">Modifier le rôle</a>
+            <button type="button" class="btn btn-danger btn-sm" >
+            <a href="{{ path('app_user_editrole', {id: user.id}) }}" style="color:ghostwhite;">Modifier le rôle</a>
+            </button>
         </li>
     {% endfor %}
     </ul>

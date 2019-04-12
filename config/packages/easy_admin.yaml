@@ -1,4 +1,20 @@
 easy_admin:
+    site_name: 'Hamac Corporation'
     entities:
-        - App\Entity\Article
+        Article:
+            class: App\Entity\Article
+            label: 'Articles'
+            list:
+                title: "Liste des articles"
+            new:
+                fields: [title, content, isPublished, imageSrc, imageAlt]
+            edit:
+                fields: [title, content, isPublished, imageSrc, imageAlt]
+        Comment:
+            class: App\Entity\Comment
+            label: 'Commentaires'
+            list:
+                title: "Liste des commentaires"
+
+
 

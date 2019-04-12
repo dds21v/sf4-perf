@@ -27,6 +27,11 @@ class Comment
      */
     private $article;
 
+    public function __toString()
+    {
+        return $this->content;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -54,5 +59,9 @@ class Comment
         $this->article = $article;
 
         return $this;
+    }
+
+    public function setIdArticle(string $string)
+    {
     }
 }
